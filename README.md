@@ -6,7 +6,7 @@ Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
 
 
 ### Topology
-![alt text]()
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/Network_Topology.drawio.png)
 - The network is comprised of Following:
 1) Pfsense Router/Firewall
 2) Active Directoroy-DC
