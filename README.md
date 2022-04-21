@@ -1,8 +1,8 @@
 # ~~~~~~~~~~IN PROGRESS~~~~~~~~~~~~
 # HomeLab_Virtual_Network
-In this project im building my own Virtual network which will consist of 3 zones: Work-Zone,Security-Zone, and DMZ-Zone . My Work-Zone subnet which will include My Active Directory Domain and a couple of Windows end-users. Another subnet will contain my SIEM, which is a Linux machine running Splunk. The last subnet will be a DMZ zone that will contain a linux machine running a Web-server.  
+In this project im building my own Virtual network which will consist of 3 zones: Work-Zone,Security-Zone, and DMZ-Zone . My Work-Zone subnet which will include My Active Directory Domain and a couple of Windows end-users. Another subnet will contain my SIEM, which is a Linux machine running Splunk. The last subnet will be a DMZ-zone that will contain a linux machine running a Web-server. The WAN interface will sit on a private network to not expose my environment/Host to the public Wide Area Network (but it will mimic a WAN-network). 
 Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
-
+-----------------
 
 
 ### Network Topology
@@ -31,18 +31,26 @@ Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
 |3|DMZ-Zone|10.10.10.0/24|255.255.255.0|
 
 
-|Function   |     HOSTNAME  |     IP   	      | OS|	    zone|         
+|Host-Function   |     Hostname  |     IP   	      | OS|	    zone|         
 -----------------|------------|-------------|------|--------|
 |Domain Controler|Gandalf-DC |172.16.0.14   | Windows 10   | Work-Zone|
-|End-User        |Legolas    |172.16.0.15   | Windows 10	|
-|End-User        |Gimli	    |172.16.0.16   | Window 10    |	
-|SIEM-Splunk            |	      |10.10.10.100    |Ubuntu-Linux|		  
+|End-User        |Legolas    |172.16.0.15   | Windows 10	| Word-Zone|
+|End-User        |Gimli	    |172.16.0.16   | Window 10    |	Word-Zone|
+|SIEM-Splunk            |	      |10.0.55.100    |Ubuntu-Linux|Security-Zone	|	  
 |Pfsense-Router (Default Gate-way) / Firewall |FW01|(10.0.2.15) (172.16.0.1) (10.10.10.10) (10.0.55.1) | FreeBSD 	|
-|Web-Server|        webVM|   10.10.10.10   |
-||
-||
+|Web-Server|        webVM|   10.10.10.10   |Ubuntu-Linux| DMZ-Zone|
 
-- Network is segmented to allow for increased security. Completely cutting off DMZ from accessing internal WORK-zone or Security zone.
+
+### Routing (Allowed/Blocked)
+- Network is segmented for increased security.
+-WAN, which is being mimiced by my private subnet- will only have access to our web-server. It will not have acess to our work-zone or security-zone 
+- DMZ-zone is Completely cut off from accessing our internal network; WORK-zone or Security zone. Only Traffic allowed to pass Locally From DMZ will be the logs to our SIEM.
+- The Work-zone can connect with others on the internal network, and reach out to our web-server, but will not be allowed to connect to our SIEM unless its Log traffic
+- Security-Zone will aggragate logs from all machines on our internal network
+![alt text](firewall_rules)
+
+
+
 
 ### Resolving issues
 - Throughout this project ive encountered many issues with configuring machines and routing. Ill list all the fixes i found have worked in order to resolve these issues.
