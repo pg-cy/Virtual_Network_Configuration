@@ -5,21 +5,22 @@ Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
 
 
 
-### Topology
-![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/Network_Topology.drawio.png)
+### Network Topology
 - The network is comprised of Following:
 1) Pfsense Router/Firewall
 2) Active Directoroy-DC
 3) Two End-users
 4) SIEM (Splunk)
 5) Web-Server 
-[alt-text]()
+
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/Network_Topology.drawio.png)
+
 
 ### PfSense interface setup
 - In this situation i have my WAN interface access coming from a private Network address. I wanted to keep everything Virtual so the WAN subnet will act as a public network.
 - Interface configuration can be completed during setup or at the start-up menu.
 
-[alt-text](pfsense interfaces)
+[alt-text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/FW_Interfaces.png)
 
 
 
