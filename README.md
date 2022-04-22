@@ -8,7 +8,7 @@
 
 
 ### Network Topology
-- The network is comprised of Following:
+- The network is comprised of the following:
 1) Pfsense Router/Firewall
 2) Active Directoroy-DC
 3) Two End-users
