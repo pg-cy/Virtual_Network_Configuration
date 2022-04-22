@@ -2,8 +2,9 @@
 # HomeLab_Virtual_Network
 
 
-#### In this project im building my own Virtual network which will consist of 3 zones: Work-Zone,Security-Zone, and DMZ-Zone . My Work-Zone subnet which will include My Active Directory Domain and a couple of Windows end-users. Another subnet will contain my SIEM, which is a Linux machine running Splunk. The last subnet will be a DMZ-zone that will contain a linux machine running a Web-server. The WAN interface will sit on a private network to not expose my environment/Host to the public Wide Area Network (but it will mimic a WAN-network). 
-#### Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
+#### In this personal project im building my own Virtual network which will consist of 3 zones: Work-Zone,Security-Zone, and DMZ-Zone . My Work-Zone subnet which will include My Active Directory Domain controller and a couple of Windows end-users. Another subnet will contain my SIEM, which is a Linux machine running Splunk. The last subnet will be a DMZ-zone that will contain a linux machine running a Web-server. The WAN interface will sit on a private network to not expose my environment/Host to the public Wide Area Network (but it will mimic a WAN-network in this setup). 
+
+#### The virtualization will be on a hypyerviser type2 using Virtualbox.
 -----------------
 
 
@@ -63,31 +64,29 @@
 ### ---DMZ-zone Rules---
 ![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/OPT2_rules.png)
 -------------------
+### Splunk logging
+- Testing to see if we can reach our web-server on port 80 From the WAN Public Network (subnet is 10.0.2.0/24) and if logging is recorded on our splunk machine.
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/Splunk_logs.png)
 
+-----------------
 ## Resolving issues
 - Throughout this project ive encountered many issues while configuring machines and routing. Ill list all the fixes i found have worked in order to resolve these issues.
 
-1) Check if you Virtual Machines have different MAC-address. They should have their own unique address. You can edit this within virtual box host settings
-2) Check if each machine has an IP address, make sure Pfsense DHCP service is running.
-3) Check your host routes. Make sure the default gateway your connecting to can reach those networks. If your setup is similiar to mine and you have your WAN sitting on a private address, you can edit your internal host routes using the "ip" command to add more routes to your table.
-5) Check the firewall rules on Pfsense, make sure the subnet is allowed to route to the destination.
-4) Check to see if you can ping the default gateway, if you can then check if you can ping a host on another network. If you can ping the Pfsense's IP on another subnet, but cant ping any machines on that subnet then it might be a firewall issue.
-5) Check to see if the firewall on both hosts is prevent from sending or recieving ICMP requests.
-6) If all else fails then you can restart all machines. For the Pfsense machine you can reboot the machine at the startup menu, and after reboot reassign the interfaces.
+1) Check if your Virtual Machines have different MAC-address. They should have their own unique address. You can edit this within virtual box host settings
+2) Check if each machine has an IP address (also needs to be unique), make sure Pfsense DHCP service is running.
+3) Look at your internal host routes. Make sure the default gateway your connecting to can reach those networks. If your setup is similiar to mine and you have your WAN sitting on a private address, you can edit your internal routing table using the "ip" command to add more routes to your table.
+3) Make sure your DNS server is
+4) For the firewall rules on Pfsense, make sure the subnet is allowed to route to the destination.
+5) Try to ping the default gateway, if you can then check if you can ping a host on another network. If you can ping the Pfsense's IP on another subnet, but cant ping any machines on that subnet then it might be a host firewall issue.
+6) Make sure the firewall on both hosts allow sending or recieving ICMP requests.
+7) If all else fails then you can restart all machines. For the Pfsense machine you can reboot the machine at the startup menu, and after reboot reassign the interfaces.
 
 
 
 
 -----
--Make you AD-DC server a static IP, so the machines know exactly where DNS server is.
---When starting up your lab again, Always start with your Firewall first--then AD-DC---then end-users
 
-Things needed to be fixed, Routing on WAN machines--SInce the pfsense is not my default gateway--wont know how to route to the other net
-Ping issues on Windows---Might need to createa rule for inbound--so you can ping that windows machine
 
---routing issues
--if you can ping other machines on other networks but you cant ping www.google.ca could be a DNS issue
--if you cant ping other machines on another netowkr then its a routing issue, might be a firewall(network or host) blocking or yuor routes are not set up on localhost to reach that network (defualt gateway might not be able to reach a specific network so you need to add another route)
 
--also add an exception on a host-firewall to be able to ping, inbound---host based firewall can also block ping
+
 
