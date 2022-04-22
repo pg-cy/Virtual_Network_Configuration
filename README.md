@@ -1,4 +1,3 @@
-# ~~~~~~~~~~IN PROGRESS~~~~~~~~~~~~
 # HomeLab_Virtual_Network
 
 
