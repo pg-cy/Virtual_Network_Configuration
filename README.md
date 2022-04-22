@@ -36,7 +36,7 @@
 ----------------
 ----------------
 
-### Network Nodes
+### Network Nodes/VM's
 
 |Host-Function   |     Hostname  |     IP   	      | OS|	    zone|         
 -----------------|------------|-------------|------|--------|
@@ -47,7 +47,7 @@
 |Pfsense-Router (Default Gate-way) / Firewall |FW01|(10.0.2.15) (172.16.0.1) (10.10.10.10) (10.0.55.1) | FreeBSD 	|
 |Web-Server|        webVM|   10.10.10.10   |Ubuntu-Linux| DMZ-Zone|
 
-
+--------------
 ### Routing (Allowed/Blocked)
 - Network is segmented for increased security.
 - WAN is mimicking our Public Network. The only thing were exposing to the Public Network will be our web-server. WAN will not have acess to our work-zone or security-zone 
@@ -65,7 +65,7 @@
 ![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/OPT2_rules.png)
 -------------------
 ### Splunk logging
-- Testing to see if we can reach our web-server on port 80 From the WAN Public Network (subnet is 10.0.2.0/24) and if logging is recorded on our splunk machine.
+- Testing to see if we can reach our web-server on port 80 From the WAN Public Network (our mimicked WAN subnet is 10.0.2.0/24) and also checking if logging is recorded on our splunk machine.
 ![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/Splunk_logs.png)
 
 -----------------
