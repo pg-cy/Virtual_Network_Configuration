@@ -45,19 +45,32 @@
 
 ### Routing (Allowed/Blocked)
 - Network is segmented for increased security.
--WAN, which is being mimiced by my private subnet- will only have access to our web-server. It will not have acess to our work-zone or security-zone 
-- DMZ-zone is Completely cut off from accessing our internal network; WORK-zone or Security zone. Only Traffic allowed to pass Locally From DMZ will be the logs to our SIEM.
+- WAN is mimicking our Public Network. The only thing were exposing to the Public Network will be our web-server. WAN will not have acess to our work-zone or security-zone 
+- DMZ-zone which is where our webserver lies, is Completely cut off from accessing our internal network; WORK-zone or Security zone. Only Traffic allowed to pass Locally From DMZ out will be the logs to our SIEM.
 - The Work-zone can connect with others on the internal network, and reach out to our web-server, but will not be allowed to connect to our SIEM unless its Log traffic
 - Security-Zone will aggragate logs from all machines on our internal network
-
+------------------
+### ---WAN Rules---
 ![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/WAN_rule.png)
+### ---Work-zone Rules---
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/LAN_rules.png)
+### ---security-zone Rules---
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/OPT1_rules.png)
+### ---DMZ-zone Rules---
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/OPT2_rules.png)
+-------------------
 
-![alt text](firewall_rules)
-![alt text](firewall_rules)
-![alt text](firewall_rules)
+## Resolving issues
+- Throughout this project ive encountered many issues while configuring machines and routing. Ill list all the fixes i found have worked in order to resolve these issues.
 
-### Resolving issues
-- Throughout this project ive encountered many issues with configuring machines and routing. Ill list all the fixes i found have worked in order to resolve these issues.
+1) Check if you Virtual Machines have different MAC-address. They should have their own unique address. You can edit this within virtual box host settings
+2) Check if each machine has an IP address, make sure Pfsense DHCP service is running.
+3) Check your host routes. Make sure the default gateway your connecting to can reach those networks. If your setup is similiar to mine and you have your WAN sitting on a private address, you can edit your internal host routes using the "ip" command to add more routes to your table.
+5) Check the firewall rules on Pfsense, make sure the subnet is allowed to route to the destination.
+4) Check to see if you can ping the default gateway, if you can then check if you can ping a host on another network. If you can ping the Pfsense's IP on another subnet, but cant ping any machines on that subnet then it might be a firewall issue.
+5) Check to see if the firewall on both hosts is prevent from sending or recieving ICMP requests.
+6) If all else fails then you can restart all machines. For the Pfsense machine you can reboot the machine at the startup menu, and after reboot reassign the interfaces.
+
 
 
 
