@@ -26,11 +26,12 @@
 
 
 
-|#|Zone-Type| Subnet/CIDR |Netmask|
-|-----------------|------|----|-----|
-|1|WORK-Zone|172.16.0.0/16|255.255.0.0|
-|2|Security-Zone|10.0.55.0/24|255.255.255.0|
-|3|DMZ-Zone|10.10.10.0/24|255.255.255.0|
+|#|Pfsense-Interface|Zone-Type| Subnet/CIDR |Netmask|
+|---|--------------|------|----|-----|
+|1|WAN|Public Network               |    |   |   |
+|2|LAN|WORK-Zone|172.16.0.0/16|255.255.0.0|
+|3|OPT1|Security-Zone|10.0.55.0/24|255.255.255.0|
+|4|OP2|DMZ-Zone|10.10.10.0/24|255.255.255.0|
 
 
 |Host-Function   |     Hostname  |     IP   	      | OS|	    zone|         
