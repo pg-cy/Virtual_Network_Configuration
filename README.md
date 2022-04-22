@@ -1,7 +1,9 @@
 # ~~~~~~~~~~IN PROGRESS~~~~~~~~~~~~
 # HomeLab_Virtual_Network
-In this project im building my own Virtual network which will consist of 3 zones: Work-Zone,Security-Zone, and DMZ-Zone . My Work-Zone subnet which will include My Active Directory Domain and a couple of Windows end-users. Another subnet will contain my SIEM, which is a Linux machine running Splunk. The last subnet will be a DMZ-zone that will contain a linux machine running a Web-server. The WAN interface will sit on a private network to not expose my environment/Host to the public Wide Area Network (but it will mimic a WAN-network). 
-Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
+
+
+#### In this project im building my own Virtual network which will consist of 3 zones: Work-Zone,Security-Zone, and DMZ-Zone . My Work-Zone subnet which will include My Active Directory Domain and a couple of Windows end-users. Another subnet will contain my SIEM, which is a Linux machine running Splunk. The last subnet will be a DMZ-zone that will contain a linux machine running a Web-server. The WAN interface will sit on a private network to not expose my environment/Host to the public Wide Area Network (but it will mimic a WAN-network). 
+#### Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
 -----------------
 
 
@@ -47,10 +49,12 @@ Setup is being virtualized inside Virtualbox, using a hyperviser type 2.
 - DMZ-zone is Completely cut off from accessing our internal network; WORK-zone or Security zone. Only Traffic allowed to pass Locally From DMZ will be the logs to our SIEM.
 - The Work-zone can connect with others on the internal network, and reach out to our web-server, but will not be allowed to connect to our SIEM unless its Log traffic
 - Security-Zone will aggragate logs from all machines on our internal network
+
+![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/WAN_rule.png)
+
 ![alt text](firewall_rules)
-
-
-
+![alt text](firewall_rules)
+![alt text](firewall_rules)
 
 ### Resolving issues
 - Throughout this project ive encountered many issues with configuring machines and routing. Ill list all the fixes i found have worked in order to resolve these issues.
