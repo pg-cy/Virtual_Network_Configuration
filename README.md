@@ -10,7 +10,7 @@
 ### Network Topology
 - The network is comprised of the following:
 1) Pfsense Router/Firewall
-2) Active Directoroy-DC
+2) Active Directory-DC
 3) Two End-users
 4) SIEM (Splunk)
 5) Web-Server 
@@ -19,8 +19,8 @@
 
 
 ### PfSense interface setup
-- In this situation i have my WAN interface access coming from a private Network address. I wanted to keep everything private so the WAN subnet will act as a public network.
-- Interface configuration can be completed during setup or at the start-up menu.
+- In this situation i have my WAN interface access coming from a private Network address. I wanted to keep everything private so the WAN subnet will mimic a public network.
+- Pfsense Interface configuration can be completed during setup or at the start-up menu incase you want to add more interfaces.
 
 ![alt text](https://github.com/pg-cy/Virtual_Network_Configuration/blob/master/images/FW_Interfaces.png)
 
@@ -28,7 +28,7 @@
 
 |#|Pfsense-Interface|Zone-Type| Subnet/CIDR |Netmask|
 |---|--------------|------|----|-----|
-|1|WAN|Public Network               |    |   |   |
+|1|WAN|Public Network |  -  |  - |   
 |2|LAN|WORK-Zone|172.16.0.0/16|255.255.0.0|
 |3|OPT1|Security-Zone|10.0.55.0/24|255.255.255.0|
 |4|OP2|DMZ-Zone|10.10.10.0/24|255.255.255.0|
@@ -42,7 +42,7 @@
 |Domain Controler|Gandalf-DC |172.16.0.14   | Windows 10   | Work-Zone|
 |End-User        |Legolas    |172.16.0.15   | Windows 10	| Word-Zone|
 |End-User        |Gimli	    |172.16.0.16   | Window 10    |	Word-Zone|
-|SIEM-Splunk            |	      |10.0.55.100    |Ubuntu-Linux|Security-Zone	|	  
+|SIEM-Splunk            |	webVM      |10.0.55.100    |Ubuntu-Linux|Security-Zone	|	  
 |Pfsense-Router (Default Gate-way) / Firewall |FW01|(10.0.2.15) (172.16.0.1) (10.10.10.10) (10.0.55.1) | FreeBSD 	|
 |Web-Server|        webVM|   10.10.10.10   |Ubuntu-Linux| DMZ-Zone|
 
