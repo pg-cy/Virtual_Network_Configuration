@@ -42,7 +42,7 @@
 |Domain Controler|Gandalf-DC |172.16.0.14   | Windows 10   | Work-Zone|
 |End-User        |Legolas    |172.16.0.15   | Windows 10	| Word-Zone|
 |End-User        |Gimli	    |172.16.0.16   | Window 10    |	Word-Zone|
-|SIEM-Splunk            |	webVM      |10.0.55.100    |Ubuntu-Linux|Security-Zone	|	  
+|SIEM-Splunk            |	SplunkVM      |10.0.55.100    |Ubuntu-Linux|Security-Zone	|	  
 |Pfsense-Router (Default Gate-way) / Firewall |FW01|(10.0.2.15) (172.16.0.1) (10.10.10.10) (10.0.55.1) | FreeBSD 	|
 |Web-Server|        webVM|   10.10.10.10   |Ubuntu-Linux| DMZ-Zone|
 
