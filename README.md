@@ -71,12 +71,12 @@
 ## Resolving issues
 - Throughout this project ive encountered many issues while configuring machines and routing. Ill list all the fixes i found have worked in order to resolve these issues.
 
-1) Check if your Virtual Machines have different MAC-address. They should have their own unique address. You can edit this within virtual box host settings
-2) Check if each machine has an IP address (also needs to be unique), make sure Pfsense DHCP service is running.
+1) Check if your Virtual Machines have different MAC-address. They should have their own unique address. You can edit this within virtual box host settings.
+2) Check if each machine has an IP address (also needs to be unique), make sure Pfsense DHCP service is running. (Make sure virtual box DHCP server is not assigning IP addresses to each internal zone, only Pfsense)
 3) Look at your internal host routes. Make sure the default gateway your connecting to can reach those networks. If your setup is similiar to mine and you have your WAN sitting on a private address, you can edit your internal routing table using the "ip" command to add more routes to your table.
-3) Make sure your DNS server is
-4) For the firewall rules on Pfsense, make sure the subnet is allowed to route to the destination.
-5) Try to ping the default gateway, if you can then check if you can ping a host on another network. If you can ping the Pfsense's IP on another subnet, but cant ping any machines on that subnet then it might be a host firewall issue.
+3) Make sure your DNS server is configured on your Pfsense device during setup. Test to see if you can reach websites by their domain name.
+4) For the firewall rules on Pfsense, make sure the subnet is allowed to route to the proper destination.
+5) Try to ping the default gateway, if you can, then check if you can ping a host on another subnet. If you can ping the Pfsense's device on another subnet, but cant ping any machines on that subnet then it might be a host firewall issue.
 6) Make sure the firewall on both hosts allow sending or recieving ICMP requests.
 7) If all else fails then you can restart all machines. For the Pfsense machine you can reboot the machine at the startup menu, and after reboot reassign the interfaces.
 
